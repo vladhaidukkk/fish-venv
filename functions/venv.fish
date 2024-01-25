@@ -1,5 +1,5 @@
 function venv --argument-names cmd --description "Activate/Deactivate virtual environment faster"
-    set venv_version 1.0.0
+    set venv_version 1.1.0
 
     switch $cmd
         case -v --version
@@ -20,16 +20,20 @@ function venv --argument-names cmd --description "Activate/Deactivate virtual en
             end
 
             # Find a virtual environment in the directory
-            set VENV_DIRS env .env venv .venv
+            set VENV_DIRS .env .venv env venv
             for venv_dir in $dir/$VENV_DIRS
                 if test -e $venv_dir/bin/activate.fish
                     break
                 end
             end
 
-            if test "$VIRTUAL_ENV" != "$venv_dir" -a -e $venv_dir/bin/activate.fish
-                source $venv_dir/bin/activate.fish
-                echo "activated $venv_dir"
+            if test -e $venv_dir/bin/activate.fish
+                if test "$VIRTUAL_ENV" != "$venv_dir"; or not string match -q "$venv_dir/bin" $PATH
+                    source $venv_dir/bin/activate.fish
+                    echo "activated $venv_dir"
+                else
+                    echo "$venv_dir already activated"
+                end
             end
         case off
             if test -n "$VIRTUAL_ENV"
