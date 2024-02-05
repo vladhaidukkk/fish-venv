@@ -4,13 +4,6 @@ function venv --argument-names cmd --description "Activate/Deactivate virtual en
     switch $cmd
         case -v --version
             echo "fish-venv $venv_version"
-        case "" -h --help
-            echo "Usage:"
-            echo "       venv on   Activate virtual environment"
-            echo "       venv off  Deactivate virtual environment"
-            echo "Options:"
-            echo "       -v, --version  Print version"
-            echo "       -h, --help     Print this help message"
         case on
             # Check if we are inside a git repository
             if git rev-parse --show-toplevel &>/dev/null
@@ -41,5 +34,12 @@ function venv --argument-names cmd --description "Activate/Deactivate virtual en
                 deactivate
                 echo "deactivated $venv_dir"
             end
+        case "*"
+            echo "Usage:"
+            echo "       venv on   Activate virtual environment"
+            echo "       venv off  Deactivate virtual environment"
+            echo "Options:"
+            echo "       -v, --version  Print version"
+            echo "       -h, --help     Print this help message"
     end
 end
