@@ -10,7 +10,7 @@ Install the `fish-venv` plugin using your preferred Fish Shell plugin manager. F
 fisher install vladhaidukkk/fish-venv
 ```
 
-Alternatively, you can do it manually by copying `functions/venv.fish` into `.config/fish/functions`.
+Alternatively, you can do it manually by copying the files from `functions` and `conf.d` to `.config/fish/functions` and `.config/fish/conf.d`.
 
 ## Usage
 
@@ -26,11 +26,47 @@ venv on
 venv off
 ```
 
+**List Available Extras:**
+
+```shell
+venv extras
+```
+
+**Enable Extra:**
+
+```shell
+venv enable <extra>
+```
+
+**Disable Extra:**
+
+```shell
+venv disable <extra>
+```
+
 That's it! Enjoy a more efficient workflow when dealing with Python virtual environments using the `fish-venv` plugin. Happy coding! 🐟🐍
 
-## Resources
+## Extras
 
-Automatically activate and deactivate virtual environments in Fish Shell with [auth-venv](https://github.com/nakulj/auto-venv).
+The `fish-venv` plugin offers additional, optional functionalities aimed at further simplifying and enhancing your development workflow. These "extras" are designed to be modular and can be enabled or disabled as per your preferences.
+
+### Current Extras:
+
+- **auto-venv:** Automatically activates the relevant Python virtual environment when you enter a directory. This extra eliminates the need to manually activate virtual environments as you navigate between your projects.
+
+    **Enable auto-venv:**
+
+    ```shell
+    venv enable auto-venv
+    ```
+
+    **Disable auto-venv:**
+
+    ```shell
+    venv disable auto-venv
+    ```
+
+    The inspiration for "auto-venv" extra came from the [auto-venv](https://github.com/nakulj/auto-venv) Fish Shell plugin.
 
 ## Contributing
 
