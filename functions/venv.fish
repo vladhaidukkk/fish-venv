@@ -1,5 +1,5 @@
 function venv --argument-names cmd arg --description "Activate/Deactivate virtual environment faster"
-    set venv_version 1.2.0
+    set venv_version 1.2.1
 
     switch $cmd
         case -v --version
@@ -57,7 +57,7 @@ function venv --argument-names cmd arg --description "Activate/Deactivate virtua
             echo "Usage:"
             echo "       venv on       Activate virtual environment"
             echo "       venv off      Deactivate virtual environment"
-            echo "       venv options  List available extras"
+            echo "       venv extras   List available extras"
             echo "       venv enable   Enable extra"
             echo "       venv disable  Disable extra"
             echo "Options:"
