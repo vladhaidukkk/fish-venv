@@ -3,7 +3,7 @@ function __auto_venv --on-variable PWD --description "Automatically activate vir
         return
     end
 
-    if not set -q AUTO_VENV
+    if not string length -q $AUTO_VENV
         return
     end
 
