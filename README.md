@@ -94,6 +94,24 @@ end
 
 Click [here](https://github.com/vladhaidukkk/dotfiles/tree/main/.config/fish) for a larger example using this approach.
 
+### Visual Studio Code
+
+The way Visual Studio Code activates the local virtual environment conflicts with `pyenv` because its activation process happens earlier, even if you use the `__login.fish` approach described above. We recommend you to disable this VSCode activation and rely entirely on the `auto-venv` extra.
+
+To disable VSCode activation, add this to your settings:
+
+```json
+{
+    "python.terminal.activateEnvironment": false
+}
+```
+
+### PyCharm
+
+Fortunately, PyCharm is smart enough to prevent conflicts between `pyenv` and activation of the local virtual environment, so it takes precedence over `pyenv`. But, the way it works in combination with `auto-venv` is weird. It may cause not critical but undesired conflicts. So, we recommend you to disable `auto-venv` extra for this IDEA.
+
+To disable `auto-venv` extra for PyCharm, you can set the `AUTO_VENV` variable to an empty string. Go to Tools > Terminal > Project Settings > Environment variables and enter `AUTO_VENV=` there.
+
 ## Contributing
 
 Contributions are welcome! Feel free to submit issues or pull requests on the [GitHub repository](https://github.com/vladhaidukkk/fish-venv).
