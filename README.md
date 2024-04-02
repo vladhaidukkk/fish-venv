@@ -50,7 +50,7 @@ That's it! Enjoy a more efficient workflow when dealing with Python virtual envi
 
 The `fish-venv` plugin offers additional, optional functionalities aimed at further simplifying and enhancing your development workflow. These "extras" are designed to be modular and can be enabled or disabled as per your preferences.
 
-### Current Extras:
+### Available Extras
 
 - **auto-venv:** Automatically activates the relevant Python virtual environment when you enter a directory. This extra eliminates the need to manually activate virtual environments as you navigate between your projects.
 
@@ -67,6 +67,32 @@ The `fish-venv` plugin offers additional, optional functionalities aimed at furt
     ```
 
     The inspiration for "auto-venv" extra came from the [auto-venv](https://github.com/nakulj/auto-venv) Fish Shell plugin.
+
+## Integrations
+
+### Pyenv
+
+Typically, you'd enable `pyenv` in `config.fish` according to the [official documentation](https://github.com/pyenv/pyenv?tab=readme-ov-file#getting-pyenv). This placement unfortunately conflicts with the `auto-venv` extra as it is placed in the `conf.d` folder. In Fish v3.0+, scripts from `conf.d` are executed before `config.fish`. As a result, `pyenv` will be added to `PATH` later, and will take precedence over the local virtual environment activated by `auto-venv`. A workaround is to create a `conf.d` script, such as `__login.fish`, to run `pyenv` activation before other scripts. This doesn't make `config.fish` redundant, but rather convenient for running commands after everything else. Typically, you want the initial commands for the login shell in `__login.fish`, and the later commands for the interactive shell in `config.fish`:
+
+**__login.fish:**
+
+```shell
+if status is-login
+    set -x PYENV_ROOT $XDG_CONFIG_HOME/pyenv
+    set -x PATH $PYENV_ROOT/bin $PATH
+    pyenv init - | source
+end
+```
+
+**config.fish:**
+
+```shell
+if status is-interactive
+    starship init fish | source
+end
+```
+
+Click [here](https://github.com/vladhaidukkk/dotfiles/tree/main/.config/fish) for a larger example using this approach.
 
 ## Contributing
 
