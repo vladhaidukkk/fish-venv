@@ -108,9 +108,11 @@ To disable VSCode activation, add this to your settings:
 
 ### PyCharm
 
-Fortunately, PyCharm is smart enough to prevent conflicts between `pyenv` and activation of the local virtual environment, so it takes precedence over `pyenv`. But, the way it works in combination with `auto-venv` is weird. It may cause not critical but undesired conflicts. So, we recommend you to disable `auto-venv` extra for this IDEA.
+Fortunately, PyCharm is smart enough to prevent conflicts between `pyenv` and activation of the local virtual environment, so it takes precedence over `pyenv`. But, the way it works in combination with `auto-venv` is weird. It may cause not critical but undesired conflicts. So, we recommend you to disable `auto-venv` extra for PyCharm, or if you want to use `auto-venv` and prevent conflicts, disable PyCharm's virtualenv activation.
 
 To disable `auto-venv` extra for PyCharm, you can set the `AUTO_VENV` variable to an empty string. Go to Tools > Terminal > Project Settings > Environment variables and enter `AUTO_VENV=` there.
+
+To disable PyCharm's virtualenv activation, got to Tools > Terminal > Application Settings and disable Activate virtualenv option.
 
 ## Contributing
 
