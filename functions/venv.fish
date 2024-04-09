@@ -22,14 +22,14 @@ function venv --argument-names cmd arg --description "Activate/Deactivate virtua
                 echo "deactivated $venv_dir"
             end
         case extras
-            if set -q AUTO_VENV
-                set auth_venv_status enabled
+            if string length -q AUTO_VENV
+                set auto_venv_status enabled
             else
-                set auth_venv_status disabled
+                set auto_venv_status disabled
             end
 
             echo "Extras:"
-            echo "       auto-venv  Automatically activate virtual environment on directory change  ($auth_venv_status)"
+            echo "       auto-venv  Automatically activate virtual environment on directory change  ($auto_venv_status)"
             echo "Help:"
             echo "       venv enable <extra>   Enable extra"
             echo "       venv disable <extra>  Disable extra"
