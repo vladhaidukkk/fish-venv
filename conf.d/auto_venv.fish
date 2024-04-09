@@ -12,7 +12,9 @@ function __auto_venv --on-variable PWD --description "Automatically activate vir
     if test -e $venv_dir/bin/activate.fish
         if test "$VIRTUAL_ENV" != "$venv_dir"; or not string match -q "$venv_dir/bin" $PATH
             source $venv_dir/bin/activate.fish
-            echo "activated $venv_dir"
+            if not string length -q $AUTO_VENV_HIDE_DETAILS
+                echo "activated $venv_dir"
+            end
         end
     end
 end

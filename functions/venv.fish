@@ -1,5 +1,5 @@
 function venv --argument-names cmd arg --description "Activate/Deactivate virtual environment faster"
-    set venv_version 1.2.1
+    set venv_version 1.3.0
 
     switch $cmd
         case -v --version
@@ -22,14 +22,21 @@ function venv --argument-names cmd arg --description "Activate/Deactivate virtua
                 echo "deactivated $venv_dir"
             end
         case extras
-            if string length -q AUTO_VENV
+            if string length -q $AUTO_VENV
                 set auto_venv_status enabled
             else
                 set auto_venv_status disabled
             end
 
+            if string length -q $AUTO_VENV_HIDE_DETAILS
+                set auto_venv_hide_details_status enabled
+            else
+                set auto_venv_hide_details_status disabled
+            end
+
             echo "Extras:"
-            echo "       auto-venv  Automatically activate virtual environment on directory change  ($auto_venv_status)"
+            echo "       auto-venv               Automatically activate virtual environment on directory change  ($auto_venv_status)"
+            echo "       auto-venv-hide-details  Hide details of automatic virtual environment activation  ($auto_venv_hide_details_status)"
             echo "Help:"
             echo "       venv enable <extra>   Enable extra"
             echo "       venv disable <extra>  Disable extra"
@@ -37,6 +44,8 @@ function venv --argument-names cmd arg --description "Activate/Deactivate virtua
             switch $arg
                 case auto-venv
                     set -U AUTO_VENV enabled
+                case auto-venv-hide-details
+                    set -U AUTO_VENV_HIDE_DETAILS enabled
                 case "*"
                     echo "Usage:"
                     echo "       venv enable <extra>  Enable extra from available extras"
@@ -47,6 +56,8 @@ function venv --argument-names cmd arg --description "Activate/Deactivate virtua
             switch $arg
                 case auto-venv
                     set -e AUTO_VENV
+                case auto-venv-hide-details
+                    set -e AUTO_VENV_HIDE_DETAILS
                 case "*"
                     echo "Usage:"
                     echo "       venv disable <extra>  Disable extra from available extras"

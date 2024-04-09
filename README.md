@@ -68,6 +68,20 @@ The `fish-venv` plugin offers additional, optional functionalities aimed at furt
 
     The inspiration for "auto-venv" extra came from the [auto-venv](https://github.com/nakulj/auto-venv) Fish Shell plugin.
 
+- **auto-venv-hide-details:** By default, when `auto-venv` extra activates a virtual environment, it prints some details. You can hide them by enabling this extra.
+
+    **Enable auto-venv-hide-details:**
+
+    ```shell
+    venv enable auto-venv-hide-details
+    ```
+
+    **Disable auto-venv-hide-details:**
+
+    ```shell
+    venv disable auto-venv-hide-details
+    ```
+
 ## Integrations
 
 ### Pyenv
